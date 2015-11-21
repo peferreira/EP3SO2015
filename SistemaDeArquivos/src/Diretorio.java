@@ -27,10 +27,26 @@ public class Diretorio extends Arquivo {
 				return arquivo;
 			}
 		}
-		System.out.println("Diretorio::getArquivo:: falou que o arquivo existia mas nao consegue encontrá-lo");
+		System.out.println("Diretorio::getArquivo:: retornou nulo");
 		return null;
 	}
 	public void addArquivo(Arquivo newArquivo) {
 		listaDeArquivos.add(newArquivo);
+	}
+	
+	public void removeArquivo(Arquivo arq){
+		listaDeArquivos.remove(arq);
+	}
+	
+	public void imprimeArquivos(Diretorio dir){
+		for(Arquivo arq: listaDeArquivos){
+			if(arq instanceof Diretorio){
+				System.out.println(arq.nome+"/");
+			}
+			else{
+				System.out.println(arq.nome);
+
+			}
+		}
 	}
 }

@@ -31,6 +31,7 @@ public class Simulador {
 					System.out.println("Rotina cp::");
 					break;
 				case "rmdir":
+					gArquivos.rmdir(argumentos[1]);
 					System.out.println("Rotina rmdir::");
 					break;
 				case "cat":
@@ -41,9 +42,11 @@ public class Simulador {
 					gArquivos.touch(argumentos[1]);
 					break;
 				case "rm":
+					gArquivos.rm(argumentos[1]);
 					System.out.println("Rotina rm::");
 					break;
 				case "ls":
+					gArquivos.ls(argumentos[1]);
 					System.out.println("Rotina ls::");
 					break;
 				case "find":
