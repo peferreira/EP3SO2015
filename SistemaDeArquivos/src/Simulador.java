@@ -50,6 +50,7 @@ public class Simulador {
 					System.out.println("Rotina ls::");
 					break;
 				case "find":
+					gArquivos.find(argumentos[1], argumentos[2]);
 					System.out.println("Rotina find::");
 					break;
 				case "df":

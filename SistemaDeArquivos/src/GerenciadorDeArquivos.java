@@ -5,7 +5,7 @@ public class GerenciadorDeArquivos {
 	Diretorio root;
 	
 	GerenciadorDeArquivos(){
-		root = new Diretorio("root");
+		root = new Diretorio("root","root");
 	}
 	
 	void cp(String origem, String destino){
@@ -71,7 +71,7 @@ public class GerenciadorDeArquivos {
 		Arquivo arquivo = buscaArquivo(caminho, tokens);
 		if(arquivo instanceof Diretorio && !arquivo.nome.equals(tokens[tokens.length-1])){
 			Diretorio dir = (Diretorio) arquivo;
-			ArquivoRegular newArquivo = new ArquivoRegular(tokens[tokens.length-1]);
+			ArquivoRegular newArquivo = new ArquivoRegular(tokens[tokens.length-1],caminho);
 			
 			dir.addArquivo(newArquivo);
 			System.out.println("Touch::arquivo adicionado ao diretorio: " + dir.nome);
@@ -90,7 +90,7 @@ public class GerenciadorDeArquivos {
 		Arquivo arquivo = buscaArquivo(caminho, tokens);
 		if((arquivo instanceof Diretorio) && !arquivo.nome.equals(tokens[tokens.length-1])){
 			Diretorio dir = (Diretorio) arquivo;
-			Diretorio newDir = new Diretorio(tokens[tokens.length-1]);
+			Diretorio newDir = new Diretorio(tokens[tokens.length-1], caminho);
 			
 			dir.addArquivo(newDir);
 			System.out.println("Mkdir::diretorio "+ newDir.nome+ " adicionado ao diretorio: " + dir.nome);
@@ -99,6 +99,18 @@ public class GerenciadorDeArquivos {
 			arquivo.setUltimoAcesso();
 			System.out.println("Mkdir::o nome ja esta sendo utilizado neste diretorio: " + arquivo.nome);
 		}
+	}
+	
+	
+	void find(String caminho, String nomeArquivo){
+		String delimitadores = "/";
+		String[] tokens = caminho.split(delimitadores);
+		Arquivo arquivo = buscaArquivo(caminho, tokens);
+		if((arquivo instanceof Diretorio)){
+			Diretorio dir = (Diretorio) arquivo;
+			dir.find(nomeArquivo);
+		}
+		
 	}
 	/*********************************************************/
 	void imprimeVetorStrings(String[] s){

@@ -7,13 +7,15 @@ import java.util.Calendar;
 public class Arquivo {
 	DateFormat df;
 	String nome;
+	String caminho;
 	Calendar tempoCriado;
 	Calendar tempoModificado;
 	Calendar ultimoAcesso;
 	byte dados[];
 	
-	Arquivo(String nome){
+	Arquivo(String nome, String caminho){
 		this.nome = nome;
+		this.caminho = caminho;
 		df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 	}
 	

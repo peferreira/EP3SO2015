@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class Diretorio extends Arquivo {
 	ArrayList<Arquivo> listaDeArquivos; 
 	
-	Diretorio(String nome){
-		super(nome);
+	Diretorio(String nome, String caminho){
+		super(nome, caminho);
 		listaDeArquivos = new ArrayList<Arquivo>();
 	}
 	public boolean existeArquivo(String nomeArquivo) {
@@ -46,6 +46,21 @@ public class Diretorio extends Arquivo {
 			else{
 				System.out.println(arq.nome);
 
+			}
+		}
+	}
+	
+	public void find(String nomeArquivo){
+		for(Arquivo arq: listaDeArquivos){
+			
+			if(arq instanceof ArquivoRegular){
+				if (arq.nome.equals(nomeArquivo)){
+					System.out.println(arq.caminho);
+				}
+			}
+			if(arq instanceof Diretorio){
+				Diretorio dir = (Diretorio)arq;
+				dir.find(nomeArquivo);
 			}
 		}
 	}
