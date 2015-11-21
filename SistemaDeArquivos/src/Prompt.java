@@ -1,4 +1,5 @@
 import java.io.BufferedReader;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Prompt {
@@ -32,9 +33,18 @@ public class Prompt {
 	
 	void leComandos() {
 		System.out.print("[ep3]:");
-		comandoLido = sc.nextLine();
-		parserComando(comandoLido);
-		comandoLido = args[0];
+		try {
+			comandoLido = sc.nextLine();
+			parserComando(comandoLido);
+			comandoLido = args[0];
+
+		}
+		catch (NoSuchElementException e){
+			
+		}
+		catch (NullPointerException e){
+			
+		}
 		
 	}
 

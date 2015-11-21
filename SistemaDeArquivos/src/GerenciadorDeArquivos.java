@@ -4,25 +4,46 @@ import java.util.Arrays;
 public class GerenciadorDeArquivos {
 	Diretorio root;
 	GeradorArquivoBinario gbinario;
+	GerenciadorDaParticao gParticao;
 	GerenciadorDeArquivos(){
 		root = new Diretorio("root","root");
 		gbinario = new GeradorArquivoBinario();
+		gParticao = new GerenciadorDaParticao(gbinario);
 	}
 	
 	
 	/*Comandos***********************************************/
+	void mount(String caminho){
+		gbinario.setCaminhoParticao(caminho);
+		gParticao.inicializa();
+		
+	}
+	
+	void cat(String caminho){
+		String delimitadores = "/";
+		String[] tokens = caminho.split(delimitadores);
+		Arquivo arquivo = buscaArquivo(caminho, tokens);
+		if(arquivo instanceof ArquivoRegular ){
+			gbinario.printArrayBinario(arquivo.dados);
+			arquivo.setUltimoAcesso();
+		}
+		else{
+			arquivo.setUltimoAcesso();
+			System.out.println("Cat::arquivo inexistente: " + arquivo.nome);
+		}
+	}
+	
 	void cp(String origem, String destino){
 		String delimitadores = "/";
 		String[] tokensOrigem = origem.split(delimitadores);
 		String[] tokens = destino.split(delimitadores);
-		System.out.println(tokensOrigem[tokensOrigem.length-1]);
 		Arquivo arquivo = buscaArquivo(destino, tokens);
 		if(arquivo instanceof Diretorio && !arquivo.nome.equals(tokensOrigem[tokensOrigem.length-1])){
 			Diretorio dir = (Diretorio) arquivo;
 			byte[] conteudo = gbinario.leArquivoBinario(origem);
-			gbinario.printArrayBinario(conteudo);
 			ArquivoRegular newArquivo = new ArquivoRegular(tokensOrigem[tokensOrigem.length-1],destino, conteudo);
 			dir.addArquivo(newArquivo);
+			gParticao.
 			System.out.println("Cp::copiado arquivo no sistema de arquivos, no diretorio: " + dir.nome);
 			gbinario.printArrayBinario(conteudo);
 		}

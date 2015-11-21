@@ -19,6 +19,12 @@ public class Arquivo {
 		df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 	}
 	
+	Arquivo(String nome, String caminho, byte dados[]){
+		this.nome = nome;
+		this.caminho = caminho;
+		df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
+		this.dados = dados;
+	}
 	
 
 	public Arquivo getArquivo(String nomeArquivo) {
@@ -29,7 +35,6 @@ public class Arquivo {
 	}
 	public void setUltimoAcesso() {
 		this.ultimoAcesso = Calendar.getInstance();
-		printInstante(ultimoAcesso);
 	}
 	public void printInstante(Calendar c){
 		System.out.println(df.format(c.getTime()));
