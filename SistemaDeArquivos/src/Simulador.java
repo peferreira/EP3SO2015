@@ -28,6 +28,7 @@ public class Simulador {
 					System.out.println("Rotina mount::");
 					break;
 				case "cp":
+					gArquivos.cp(argumentos[1], argumentos[2]);
 					System.out.println("Rotina cp::");
 					break;
 				case "rmdir":

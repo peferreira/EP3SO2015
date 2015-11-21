@@ -3,15 +3,36 @@ import java.util.Arrays;
 
 public class GerenciadorDeArquivos {
 	Diretorio root;
-	
+	GeradorArquivoBinario gbinario;
 	GerenciadorDeArquivos(){
 		root = new Diretorio("root","root");
+		gbinario = new GeradorArquivoBinario();
 	}
 	
-	void cp(String origem, String destino){
-		
-	}
+	
 	/*Comandos***********************************************/
+	void cp(String origem, String destino){
+		String delimitadores = "/";
+		String[] tokensOrigem = origem.split(delimitadores);
+		String[] tokens = destino.split(delimitadores);
+		System.out.println(tokensOrigem[tokensOrigem.length-1]);
+		Arquivo arquivo = buscaArquivo(destino, tokens);
+		if(arquivo instanceof Diretorio && !arquivo.nome.equals(tokensOrigem[tokensOrigem.length-1])){
+			Diretorio dir = (Diretorio) arquivo;
+			byte[] conteudo = gbinario.leArquivoBinario(origem);
+			gbinario.printArrayBinario(conteudo);
+			ArquivoRegular newArquivo = new ArquivoRegular(tokensOrigem[tokensOrigem.length-1],destino, conteudo);
+			dir.addArquivo(newArquivo);
+			System.out.println("Cp::copiado arquivo no sistema de arquivos, no diretorio: " + dir.nome);
+			gbinario.printArrayBinario(conteudo);
+		}
+		else{
+			arquivo.setUltimoAcesso();
+			System.out.println("Cp::o nome ja esta sendo utilizado neste diretorio: " + arquivo.nome);
+
+		}
+	}
+	
 	void rm(String caminho){
 		String delimitadores = "/";
 		String[] tokens = caminho.split(delimitadores);		
