@@ -1,0 +1,24 @@
+﻿Pedro Alexandre 7577448
+Rodrigo Zerbini 4324346
+
+Existe um Makefile dentro do diretório raiz do EP.
+
+Para compilar os arquivos .java, simultaneamente, basta rodar o comando make no diretório raiz: 
+
+>> make
+
+Para remover os arquivos .class:
+
+>> make clean
+
+
+
+Para executar o simulador de sistemas de arquivos
+
+Primeiramente, certifique-se de que o arquivo de entrada está no mesmo diretório que os arquivos java. 
+
+Em seguida, no Shell, vá até o diretório raiz e digite
+
+>> java -Xms1024M -Xmx2048M Simulador
+
+O bash do ep3 irá aparecer e o usuário poderá escolher as opções para interagir com o simulador.
