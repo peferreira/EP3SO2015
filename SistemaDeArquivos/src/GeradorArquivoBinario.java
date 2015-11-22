@@ -67,6 +67,20 @@ public class GeradorArquivoBinario {
 		}
 	}
 	
+	public void escreveArquivo(byte[] arquivoASerAtualizado,int inicio, int tamanho, String caminhoArquivo) {
+
+		try {
+			RandomAccessFile file = new RandomAccessFile(caminhoArquivo, "rw");
+			file.seek(inicio);
+			file.write(arquivoASerAtualizado);
+			file.close();
+
+
+		} catch (Exception e1) {
+			e1.printStackTrace();
+		}
+	}
+	
 	public void leRegiao(File particao,int inicio, int tamanho) {
 		byte[] regiao = leArquivoBinario(particao,inicio, tamanho);
 		for(int i = 0; i < regiao.length; i++){

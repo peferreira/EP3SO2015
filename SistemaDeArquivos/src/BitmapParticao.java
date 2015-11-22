@@ -3,7 +3,7 @@ import java.io.File;
 
 public class BitmapParticao extends Particao {
 	 /*bitmap 0 quer dizer que o bloco esta livre*/
-	static int inicio = 100;
+	static int inicio = 0;
 	static int tamanho = 24000;
 	BitmapParticao(GeradorArquivoBinario gBinario, File particao) {
 		super(gBinario, inicio, tamanho, particao);
@@ -19,7 +19,20 @@ public class BitmapParticao extends Particao {
 		for(int i = 0; i < tamanho; i++){
 			bitmap[i] = -128;/*adicionando o valor de livre para todos bitmaps*/
 		}
+		System.out.println("inicializa 1 bitmap");
+
+		for(int k = 0; k < 100; k++){
+			System.out.print(" "+ bitmap[k]);
+		}
+		System.out.println();
 		gBinario.escreveArquivo(bitmap, inicio, tamanho);
+		System.out.println("inicializa 2 bitmap");
+
+		for(int k = 0; k < 100; k++){
+			System.out.print(" "+ bitmap[k]);
+		}
+		System.out.println();
+
 		//gBinario.leRegiao(particao, inicio, tamanho);
 	}
 	
@@ -28,6 +41,11 @@ public class BitmapParticao extends Particao {
 		int numBitsLivresEncontrados, i;
 		i = numBitsLivresEncontrados = 0;
 		byte[] bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
+		
+		for(int k = 0; k < 100; k++){
+			System.out.print(" "+ bitmap[k]);
+		}
+		System.out.println();
 		
 		while(i < tamanho && numBitsLivresEncontrados < numDeBitsLivresPedidos){
 			if(bitmap[i] == -128){
@@ -47,6 +65,11 @@ public class BitmapParticao extends Particao {
 	byte[] atualizaBitmap(int[] bitsLivres, byte[] bitmap) {
 		for (int i = 0; i < bitsLivres.length; i++)
 			bitmap[bitsLivres[i]] = 127;
+		System.out.println("atualiza bitmap");
+		for(int k = 0; k < 100; k++){
+			System.out.print(" "+ bitmap[k]);
+		}
+		System.out.println();
 		return bitmap;
 	}
 	

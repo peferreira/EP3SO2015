@@ -43,11 +43,11 @@ public class GerenciadorDaParticao {
 		for( int i = 0; i < tetoNumDeBlocosDoArquivo;i++){
 			if(i == tetoNumDeBlocosDoArquivo-1){
 				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, sobraDeBytes);
-				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, sobraDeBytes );
+				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, sobraDeBytes, arquivoASerGravado.caminho );
 			}
 			else{
 				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, 4000);
-				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, 4000);
+				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, 4000,arquivoASerGravado.caminho);
 				tabelaFat[i] = bitsLivres[i+1];
 			}
 			
