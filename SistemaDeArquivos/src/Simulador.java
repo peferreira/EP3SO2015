@@ -13,7 +13,7 @@ public class Simulador {
 		GerenciadorDeArquivos gArquivos = new GerenciadorDeArquivos();
 		boolean lerComandos = true;
 		while(lerComandos){
-			try{
+			/*try{*/
 				prompt.leComandos();
 				argumentos = prompt.getArgumentos();
 				comando = argumentos[0];		
@@ -74,11 +74,15 @@ public class Simulador {
 			
 			
 			}
-			catch (NullPointerException e){
-			
+		/*	catch (NullPointerException e){
+			}
+			catch (ArrayIndexOutOfBoundsException e){
+			}
+			catch (Exception e){
+				e.printStackTrace();
 			}
 			
-		}
+		}*/
 		
 	}
 

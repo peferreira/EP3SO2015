@@ -11,7 +11,7 @@ public class Arquivo {
 	Calendar tempoCriado;
 	Calendar tempoModificado;
 	Calendar ultimoAcesso;
-	byte dados[];
+	int blocoInicial;
 	
 	Arquivo(String nome, String caminho){
 		this.nome = nome;
@@ -19,13 +19,9 @@ public class Arquivo {
 		df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
 	}
 	
-	Arquivo(String nome, String caminho, byte dados[]){
-		this.nome = nome;
-		this.caminho = caminho;
-		df = new SimpleDateFormat("dd/MM/yy HH:mm:ss");
-		this.dados = dados;
+	public void setBlocoInicial(int blocoInicial){
+		this.blocoInicial = blocoInicial;
 	}
-	
 
 	public Arquivo getArquivo(String nomeArquivo) {
 		return null;

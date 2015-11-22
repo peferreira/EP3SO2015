@@ -6,8 +6,5 @@ public class ArquivoRegular extends Arquivo {
 		
 	}
 	
-	ArquivoRegular(String nome, String caminho, byte[] dados){
-		super(nome, caminho, dados);
-		
-	}
+	
 }

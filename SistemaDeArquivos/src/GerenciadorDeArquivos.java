@@ -8,14 +8,16 @@ public class GerenciadorDeArquivos {
 	GerenciadorDeArquivos(){
 		root = new Diretorio("root","root");
 		gbinario = new GeradorArquivoBinario();
-		gParticao = new GerenciadorDaParticao(gbinario);
+		
 	}
 	
 	
 	/*Comandos***********************************************/
 	void mount(String caminho){
 		gbinario.setCaminhoParticao(caminho);
-		gParticao.inicializa();
+		gParticao = new GerenciadorDaParticao(gbinario);
+		gParticao.inicializa(caminho);
+		
 		
 	}
 	
@@ -24,7 +26,8 @@ public class GerenciadorDeArquivos {
 		String[] tokens = caminho.split(delimitadores);
 		Arquivo arquivo = buscaArquivo(caminho, tokens);
 		if(arquivo instanceof ArquivoRegular ){
-			gbinario.printArrayBinario(arquivo.dados);
+			
+			gParticao.leArquivo(arquivo);
 			arquivo.setUltimoAcesso();
 		}
 		else{
@@ -40,12 +43,10 @@ public class GerenciadorDeArquivos {
 		Arquivo arquivo = buscaArquivo(destino, tokens);
 		if(arquivo instanceof Diretorio && !arquivo.nome.equals(tokensOrigem[tokensOrigem.length-1])){
 			Diretorio dir = (Diretorio) arquivo;
-			byte[] conteudo = gbinario.leArquivoBinario(origem);
-			ArquivoRegular newArquivo = new ArquivoRegular(tokensOrigem[tokensOrigem.length-1],destino, conteudo);
+			ArquivoRegular newArquivo = new ArquivoRegular(tokensOrigem[tokensOrigem.length-1],destino);
 			dir.addArquivo(newArquivo);
-			gParticao.
+			gParticao.grava(newArquivo, origem);
 			System.out.println("Cp::copiado arquivo no sistema de arquivos, no diretorio: " + dir.nome);
-			gbinario.printArrayBinario(conteudo);
 		}
 		else{
 			arquivo.setUltimoAcesso();
