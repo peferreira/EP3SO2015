@@ -11,7 +11,8 @@ public class ArquivosParticao extends Particao {
 	
 	void gravaDados(int[] tabelaFat,int sobraDeBytes, File fileDeOrigem,Arquivo arquivoASerGravado, int[] bitsLivres, int tetoNumDeBlocosDoArquivo){
 		byte[] regiaoASerGravada;
-		
+		arquivoASerGravado.setBlocoInicial(bitsLivres[0]);
+
 		for( int i = 0; i < tetoNumDeBlocosDoArquivo;i++){
 			if(i == tetoNumDeBlocosDoArquivo-1){
 				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, sobraDeBytes);

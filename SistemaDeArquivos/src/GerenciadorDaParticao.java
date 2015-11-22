@@ -40,7 +40,6 @@ public class GerenciadorDaParticao {
 		int sobraDeBytes =  ((int)tamanhoArquivo%4000);
 		int tetoNumDeBlocosDoArquivo = (int)Math.ceil(numDeBlocosDoArquivo);
 		int[] bitsLivres = bitmap.getBitsLivres(tetoNumDeBlocosDoArquivo);
-		arquivoASerGravado.setBlocoInicial(bitsLivres[0]);
 	    arquivos.gravaDados(tabelaFat, sobraDeBytes,fileDeOrigem,arquivoASerGravado ,bitsLivres, tetoNumDeBlocosDoArquivo);
 		
 		
@@ -59,7 +58,7 @@ public class GerenciadorDaParticao {
 	void leArquivo(Arquivo arquivo){
 		int bloco = arquivo.blocoInicial;
 		while(bloco != -1){
-			gBinario.printArrayBinario(gBinario.leArquivoBinario(arquivoParticao,bloco*4000, 4000));
+			gBinario.printArrayBinario(gBinario.leArquivoBinario(arquivoParticao,bloco*4000+arquivos.inicio, 4000));
 			bloco = tabelaFat[bloco];
 		}
 		
