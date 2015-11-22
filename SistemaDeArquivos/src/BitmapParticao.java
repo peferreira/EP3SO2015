@@ -21,13 +21,13 @@ public class BitmapParticao extends Particao {
 		for(int i = 0; i < tamanho; i++){
 			bitmap[i] = -128;/*adicionando o valor de livre para todos bitmaps*/
 		}
-		System.out.println("inicializa 1 bitmap");
-		printBitmap(bitmap);
+		//System.out.println("inicializa 1 bitmap");
+		//printBitmap(bitmap);
 
 		gBinario.escreveArquivo(bitmap, inicio, tamanho);
-		System.out.println("inicializa 2 bitmap");
+		//System.out.println("inicializa 2 bitmap");
 
-		printBitmap(bitmap);
+		//printBitmap(bitmap);
 
 
 		//gBinario.leRegiao(particao, inicio, tamanho);
@@ -46,7 +46,7 @@ public class BitmapParticao extends Particao {
 		i = numBitsLivresEncontrados = 0;
 		byte[] bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
 		
-		printBitmap(bitmap);
+		//printBitmap(bitmap);
 		
 		while(i < tamanho && numBitsLivresEncontrados < numDeBitsLivresPedidos){
 			if(bitmap[i] == -128){
@@ -69,7 +69,7 @@ public class BitmapParticao extends Particao {
 		
 		bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
 		System.out.println("imprimindo pela ultima vez");
-		printBitmap(bitmap);
+		//printBitmap(bitmap);
 
 		System.out.println("imprimindo pela ultima vez##################################");
 
@@ -80,7 +80,7 @@ public class BitmapParticao extends Particao {
 		for (int i = 0; i < bitsLivres.length; i++)
 			bitmap[bitsLivres[i]] = 127;
 		System.out.println("atualiza bitmap");
-		printBitmap(bitmap);
+		//printBitmap(bitmap);
 
 		return bitmap;
 	}

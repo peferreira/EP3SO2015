@@ -168,7 +168,6 @@ public class GerenciadorDeArquivos {
 		Arquivo arq = root;
 	
 		for(int i = 0; i < tokens.length-1; i++){
-			System.out.println("busca arquivo arg: " +i);
 			if(arq.existeArquivo(tokens[i+1])){
 				arq = arq.getArquivo(tokens[i+1]);
 			}

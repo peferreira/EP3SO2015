@@ -16,7 +16,7 @@ public class GerenciadorDaParticao {
 		
 	}
 	public void printBitmap(){
-		bitmap.printBitmap();
+		//bitmap.printBitmap();
 	}
 	
 	void inicializa(String caminho){
