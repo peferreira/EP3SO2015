@@ -66,6 +66,7 @@ public class GerenciadorDeArquivos {
 			Arquivo a = dir.getArquivo(nomeArquivoASerRemovido);
 			if(a != null && a instanceof ArquivoRegular){
 				dir.removeArquivo(a);
+				gParticao.removeDoBitmap(a.blocoInicial);
 			}
 			else if(a != null)
 				System.out.println("Rm:: "+ a.nome + " nao pode ser removido pois é um diretorio ");

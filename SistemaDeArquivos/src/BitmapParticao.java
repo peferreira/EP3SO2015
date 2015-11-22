@@ -50,5 +50,15 @@ public class BitmapParticao extends Particao {
 		return bitmap;
 	}
 	
+	void limpaArquivoDoBitmap(int blocoInicial, int[] tabelaFat){
+		
+		byte[] bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
+		int bloco = blocoInicial;
+		while(bloco != -1){
+			bitmap[bloco] = -128;
+			bloco = tabelaFat[bloco];
+		}
+		gBinario.escreveArquivo(bitmap, inicio, tamanho);
+	}
 	
 }

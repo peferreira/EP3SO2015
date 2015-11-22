@@ -14,8 +14,7 @@ public class Diretorio extends Arquivo {
 				System.out.println("Diretorio::existeArquivo: Arquivo já existe :"+ arquivo.nome);
 				return true;
 			}
-			else
-				return false;
+			
 		}
 		return false;
 	}

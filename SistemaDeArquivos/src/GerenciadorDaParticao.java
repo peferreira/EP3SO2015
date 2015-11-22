@@ -73,4 +73,8 @@ public class GerenciadorDaParticao {
 		}
 		
 	}
+
+	public void removeDoBitmap(int blocoInicial) {
+		bitmap.limpaArquivoDoBitmap(blocoInicial, tabelaFat);
+	}
 }
