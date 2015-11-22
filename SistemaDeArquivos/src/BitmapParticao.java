@@ -11,7 +11,9 @@ public class BitmapParticao extends Particao {
 		
 		inicializa();
 	}
-	
+	public void printBitmap(){
+		System.out.println(new String(gBinario.leArquivoBinario(particao, inicio, tamanho)));
+	}
 	
 	void inicializa(){
 		
@@ -20,20 +22,22 @@ public class BitmapParticao extends Particao {
 			bitmap[i] = -128;/*adicionando o valor de livre para todos bitmaps*/
 		}
 		System.out.println("inicializa 1 bitmap");
+		printBitmap(bitmap);
 
-		for(int k = 0; k < 100; k++){
-			System.out.print(" "+ bitmap[k]);
-		}
-		System.out.println();
 		gBinario.escreveArquivo(bitmap, inicio, tamanho);
 		System.out.println("inicializa 2 bitmap");
 
+		printBitmap(bitmap);
+
+
+		//gBinario.leRegiao(particao, inicio, tamanho);
+	}
+	
+	void printBitmap(byte[] bitmap){
 		for(int k = 0; k < 100; k++){
 			System.out.print(" "+ bitmap[k]);
 		}
 		System.out.println();
-
-		//gBinario.leRegiao(particao, inicio, tamanho);
 	}
 	
 	int[] getBitsLivres(int numDeBitsLivresPedidos){
@@ -42,10 +46,7 @@ public class BitmapParticao extends Particao {
 		i = numBitsLivresEncontrados = 0;
 		byte[] bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
 		
-		for(int k = 0; k < 100; k++){
-			System.out.print(" "+ bitmap[k]);
-		}
-		System.out.println();
+		printBitmap(bitmap);
 		
 		while(i < tamanho && numBitsLivresEncontrados < numDeBitsLivresPedidos){
 			if(bitmap[i] == -128){
@@ -57,8 +58,21 @@ public class BitmapParticao extends Particao {
 			return null;
 		
 		bitmap = atualizaBitmap(bitsLivres, bitmap);
-		gBinario.escreveArquivo(bitmap, inicio, tamanho);
 		
+		gBinario.escreveArquivo(bitmap, inicio, tamanho);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		bitmap = gBinario.leArquivoBinario(particao, inicio, tamanho);
+		System.out.println("imprimindo pela ultima vez");
+		printBitmap(bitmap);
+
+		System.out.println("imprimindo pela ultima vez##################################");
+
 		return bitsLivres;
 	}
 	
@@ -66,10 +80,8 @@ public class BitmapParticao extends Particao {
 		for (int i = 0; i < bitsLivres.length; i++)
 			bitmap[bitsLivres[i]] = 127;
 		System.out.println("atualiza bitmap");
-		for(int k = 0; k < 100; k++){
-			System.out.print(" "+ bitmap[k]);
-		}
-		System.out.println();
+		printBitmap(bitmap);
+
 		return bitmap;
 	}
 	

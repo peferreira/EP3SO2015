@@ -15,6 +15,9 @@ public class GerenciadorDaParticao {
 		this.gBinario = gBinario;
 		
 	}
+	public void printBitmap(){
+		bitmap.printBitmap();
+	}
 	
 	void inicializa(String caminho){
 		arquivoParticao = new File(caminho);
@@ -38,21 +41,9 @@ public class GerenciadorDaParticao {
 		int tetoNumDeBlocosDoArquivo = (int)Math.ceil(numDeBlocosDoArquivo);
 		int[] bitsLivres = bitmap.getBitsLivres(tetoNumDeBlocosDoArquivo);
 		arquivoASerGravado.setBlocoInicial(bitsLivres[0]);
-		byte[] regiaoASerGravada;
+	    arquivos.gravaDados(tabelaFat, sobraDeBytes,fileDeOrigem,arquivoASerGravado ,bitsLivres, tetoNumDeBlocosDoArquivo);
 		
-		for( int i = 0; i < tetoNumDeBlocosDoArquivo;i++){
-			if(i == tetoNumDeBlocosDoArquivo-1){
-				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, sobraDeBytes);
-				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, sobraDeBytes, arquivoASerGravado.caminho );
-			}
-			else{
-				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, 4000);
-				gBinario.escreveArquivo(regiaoASerGravada, bitsLivres[i]*4000, 4000,arquivoASerGravado.caminho);
-				tabelaFat[i] = bitsLivres[i+1];
-			}
-			
-		}
-
+		
 		//leArquivo(bitsLivres);
 
 	}

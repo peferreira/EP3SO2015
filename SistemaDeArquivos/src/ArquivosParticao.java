@@ -9,4 +9,27 @@ public class ArquivosParticao extends Particao {
 	}
 	
 	
+	void gravaDados(int[] tabelaFat,int sobraDeBytes, File fileDeOrigem,Arquivo arquivoASerGravado, int[] bitsLivres, int tetoNumDeBlocosDoArquivo){
+		byte[] regiaoASerGravada;
+		
+		for( int i = 0; i < tetoNumDeBlocosDoArquivo;i++){
+			if(i == tetoNumDeBlocosDoArquivo-1){
+				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, sobraDeBytes);
+
+				gBinario.escreveArquivo(regiaoASerGravada, inicio+bitsLivres[i]*4000, sobraDeBytes );
+				
+
+
+
+			}
+			else{
+				regiaoASerGravada = gBinario.leArquivoBinario(fileDeOrigem, i*4000, 4000);
+				gBinario.escreveArquivo(regiaoASerGravada, inicio+bitsLivres[i]*4000, 4000);
+				tabelaFat[i] = bitsLivres[i+1];
+			}
+			
+		}
+		
+		
+	}
 }
