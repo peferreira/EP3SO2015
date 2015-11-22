@@ -11,7 +11,7 @@ public class Diretorio extends Arquivo {
 	public boolean existeArquivo(String nomeArquivo) {
 		for (Arquivo arquivo: listaDeArquivos){
 			if(nomeArquivo.equals(arquivo.nome)){
-				System.out.println("Diretorio::existeArquivo: Arquivo já existe :"+ arquivo.nome);
+				//System.out.println("Diretorio::existeArquivo: Arquivo já existe :"+ arquivo.nome);
 				return true;
 			}
 			
